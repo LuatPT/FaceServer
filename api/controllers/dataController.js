@@ -8,6 +8,7 @@ exports.get_all_datas = (req, res) => {
 };
 exports.create_new_data = (req, res) => {
   var new_data = new Data(req.body);
+  console.log(new_data);
   Data.createData(new_data, (err, data) => {
     if (err) res.send(err);
     res.json('data  have been created');
