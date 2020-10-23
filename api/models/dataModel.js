@@ -1,16 +1,8 @@
 'use strict';
 const db = require('../controllers/db');
 var Data = function (data) {
-  this.data_id = data.data_id;
-  this.data_name = data.data_name;
-  this.data_item_1 = data.data_item_1;
-  this.data_item_2 = data.data_item_2;
-  this.data_item_3 = data.data_item_3;
-  this.data_item_4 = data.data_item_4;
-  this.data_item_5 = data.data_item_5;
-  this.data_item_6 = data.data_item_6;
-  this.data_item_7 = data.data_item_7;
-  this.data_item_8 = data.data_item_8;
+  this.name = data.name;
+  this.descriptor = data.descriptor;
 };
 Data.getAllDatas = (result) => {
   let sql = 'SELECT data_name as name, data_item_1, data_item_2, data_item_3, data_item_4, data_item_5, data_item_6, data_item_7, data_item_8 FROM inputdata';
@@ -40,7 +32,8 @@ Data.getAllDatas = (result) => {
 Data.createData = (newData, result) => {
   let sql = 'INSERT INTO inputdata SET ?';
   var newObj = {};
-  newObj.name = newData.name;
+  // newObj.data_id = 4;
+  newObj.data_name = newData.name;
   newObj.data_item_1 = newData.descriptor;
   newObj.data_item_2 = newData.descriptor;
   newObj.data_item_3 = newData.descriptor;
@@ -49,11 +42,11 @@ Data.createData = (newData, result) => {
   newObj.data_item_6 = newData.descriptor;
   newObj.data_item_7 = newData.descriptor;
   newObj.data_item_8 = newData.descriptor;
-  console.log(newData);
+  // console.log(newObj);
   db.query(sql, newObj, (err, response) => {
 
     if (err) result(err, null);
-    result(null, newData.data_id);
+    // result(null, "Ok");
   });
 };
 Data.getDetailData = (data_id, result) => {
