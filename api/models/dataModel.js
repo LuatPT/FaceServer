@@ -25,7 +25,6 @@ Data.getAllDatas = (result) => {
       obj.descriptors = arr;
       res[i] = obj;
     }
-    console.log(res);
     result(null, res);
   });
 };
@@ -42,7 +41,6 @@ Data.createData = (newData, result) => {
   newObj.data_item_6 = newData.descriptor;
   newObj.data_item_7 = newData.descriptor;
   newObj.data_item_8 = newData.descriptor;
-  // console.log(newObj);
   db.query(sql, newObj, (err, response) => {
 
     if (err) result(err, null);
@@ -66,10 +64,11 @@ Data.deleteData = (data_id, result) => {
 };
 Data.updateData = (data, result) => {
   let sql = 'UPDATE inputdata SET ? WHERE data_id = ?';
-  db.query(sql, [data, data.data_id], (err, response) => {
-    if (err) result(err, null);
-    result(null, data.data_id);
-  });
+  console.log(data.position);
+  // db.query(sql, [data, data.data_id], (err, response) => {
+  //   if (err) result(err, null);
+  //   result(null, data.data_id);
+  // });
 };
 function convertToArray(text) {
   let temp = text.split(',');
