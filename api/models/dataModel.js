@@ -62,13 +62,54 @@ Data.deleteData = (data_id, result) => {
     result(null, data_id);
   });
 };
-Data.updateData = (data, result) => {
-  let sql = 'UPDATE inputdata SET ? WHERE data_id = ?';
-  console.log(data.position);
-  // db.query(sql, [data, data.data_id], (err, response) => {
-  //   if (err) result(err, null);
-  //   result(null, data.data_id);
-  // });
+Data.updateData = (newData, result) => {
+  let sql = 'UPDATE inputdata SET ? WHERE data_name = ?';
+
+  var newObj = {};
+  // newObj.data_id = 44;
+  newObj.data_name = newData.name;
+  newObj.data_item_1 = newData.oldDesc.toString();
+  newObj.data_item_2 = newData.oldDesc.toString();
+  newObj.data_item_3 = newData.oldDesc.toString();
+  newObj.data_item_4 = newData.oldDesc.toString();
+  newObj.data_item_5 = newData.oldDesc.toString();
+  newObj.data_item_6 = newData.oldDesc.toString();
+  newObj.data_item_7 = newData.oldDesc.toString();
+  newObj.data_item_8 = newData.oldDesc.toString();
+  console.log(newData.position);
+  switch (newData.position) {
+    case "1":
+      newObj.data_item_1 = newData.descriptor.toString();
+      break;
+    case 2:
+      newObj.data_item_2 = (newData.descriptor);
+      break;
+    case "3":
+      newObj.data_item_3 = newData.descriptor.toString();
+      break;
+    case "4":
+      newObj.data_item_4 = newData.descriptor.toString();
+      break;
+    case "5":
+      newObj.data_item_5 = newData.descriptor.toString();
+      break;
+    case "6":
+      newObj.data_item_6 = newData.descriptor.toString();
+      break;
+    case "7":
+      newObj.data_item_7 = newData.descriptor.toString();
+      break;
+    case "8":
+      newObj.data_item_8 = newData.descriptor.toString();
+      break;
+    default:
+      break;
+  }
+  console.log(newObj);
+  db.query(sql, [newObj, newObj.data_name], (err, response) => {
+    if (err) result(err, null);
+    result(null, "OK");
+  });
 };
 function convertToArray(text) {
   let temp = text.split(',');
@@ -79,4 +120,5 @@ function convertToArray(text) {
   });
   return arr;
 }
+
 module.exports = Data;

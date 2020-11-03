@@ -8,7 +8,7 @@ module.exports = function (app) {
     .post(dataCtrl.create_new_data);
   //data phải đặt tên đúng với dataController
   app
-    .route('/api/v1/inputdata/:data_id')
+    .route('/api/v1/inputdata/:name')
     .get(dataCtrl.get_detail_data)
     .put(dataCtrl.update_data)
     .delete(dataCtrl.delete_data);
