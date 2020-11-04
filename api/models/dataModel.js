@@ -63,50 +63,50 @@ Data.deleteData = (data_id, result) => {
   });
 };
 Data.updateData = (newData, result) => {
-  let sql = 'UPDATE inputdata SET ? WHERE data_name = ?';
 
+  let sql = '';
   var newObj = {};
   // newObj.data_id = 44;
   newObj.data_name = newData.name;
-  newObj.data_item_1 = newData.oldDesc.toString();
-  newObj.data_item_2 = newData.oldDesc.toString();
-  newObj.data_item_3 = newData.oldDesc.toString();
-  newObj.data_item_4 = newData.oldDesc.toString();
-  newObj.data_item_5 = newData.oldDesc.toString();
-  newObj.data_item_6 = newData.oldDesc.toString();
-  newObj.data_item_7 = newData.oldDesc.toString();
-  newObj.data_item_8 = newData.oldDesc.toString();
   console.log(newData.position);
   switch (newData.position) {
-    case "1":
-      newObj.data_item_1 = newData.descriptor.toString();
+    case 1:
+      newObj.data_item_1 = newData.descriptor;
+      sql = 'UPDATE inputdata SET data_item_1 = ? WHERE data_name = ?';
       break;
     case 2:
       newObj.data_item_2 = (newData.descriptor);
+      sql = 'UPDATE inputdata SET data_item_2 = ? WHERE data_name = ?';
       break;
-    case "3":
-      newObj.data_item_3 = newData.descriptor.toString();
+    case 3:
+      newObj.data_item_3 = newData.descriptor;
+      sql = 'UPDATE inputdata SET data_item_3 = ? WHERE data_name = ?';
       break;
-    case "4":
-      newObj.data_item_4 = newData.descriptor.toString();
+    case 4:
+      newObj.data_item_4 = newData.descriptor;
+      sql = 'UPDATE inputdata SET data_item_4 = ? WHERE data_name = ?';
       break;
-    case "5":
-      newObj.data_item_5 = newData.descriptor.toString();
+    case 5:
+      newObj.data_item_5 = newData.descriptor;
+      sql = 'UPDATE inputdata SET data_item_5 = ? WHERE data_name = ?';
       break;
-    case "6":
-      newObj.data_item_6 = newData.descriptor.toString();
+    case 6:
+      newObj.data_item_6 = newData.descriptor;
+      sql = 'UPDATE inputdata SET data_item_6 = ? WHERE data_name = ?';
       break;
-    case "7":
-      newObj.data_item_7 = newData.descriptor.toString();
+    case 7:
+      newObj.data_item_7 = newData.descriptor;
+      sql = 'UPDATE inputdata SET data_item_7 = ? WHERE data_name = ?';
       break;
-    case "8":
-      newObj.data_item_8 = newData.descriptor.toString();
+    case 8:
+      newObj.data_item_8 = newData.descriptor;
+      sql = 'UPDATE inputdata SET data_item_8 = ? WHERE data_name = ?';
       break;
     default:
       break;
   }
   console.log(newObj);
-  db.query(sql, [newObj, newObj.data_name], (err, response) => {
+  db.query(sql, [newData.descriptor, newData.name], (err, response) => {
     if (err) result(err, null);
     result(null, "OK");
   });
